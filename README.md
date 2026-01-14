@@ -1,4 +1,4 @@
-# @works-cli/github-action
+# Works AI GitHub Action
 
 GitHub Action for syncing repository activity with Works work tracking.
 
@@ -28,9 +28,8 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: works-cli/github-action@v1
+      - uses: Robincyriac1/works-github-action@v1
         with:
-          server-url: ${{ secrets.WORKS_URL }}
           api-key: ${{ secrets.WORKS_API_KEY }}
           action: sync
 ```
@@ -49,9 +48,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - uses: works-cli/github-action@v1
+      - uses: Robincyriac1/works-github-action@v1
         with:
-          server-url: ${{ secrets.WORKS_URL }}
           api-key: ${{ secrets.WORKS_API_KEY }}
           action: complete
           summary: 'Merged PR #${{ github.event.pull_request.number }}'
@@ -71,9 +69,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Report Start
-        uses: works-cli/github-action@v1
+        uses: Robincyriac1/works-github-action@v1
         with:
-          server-url: ${{ secrets.WORKS_URL }}
           action: progress
           work-id: ${{ github.event.head_commit.message }}
           progress: 25
@@ -83,9 +80,8 @@ jobs:
         run: npm run build
 
       - name: Report Complete
-        uses: works-cli/github-action@v1
+        uses: Robincyriac1/works-github-action@v1
         with:
-          server-url: ${{ secrets.WORKS_URL }}
           action: progress
           progress: 100
           summary: 'Build complete'
@@ -105,10 +101,9 @@ jobs:
     if: github.event.label.name == 'ai-agent'
     runs-on: ubuntu-latest
     steps:
-      - uses: works-cli/github-action@v1
+      - uses: Robincyriac1/works-github-action@v1
         id: works
         with:
-          server-url: ${{ secrets.WORKS_URL }}
           action: init
           work-id: ${{ github.event.issue.number }}
 
@@ -121,7 +116,7 @@ jobs:
 
 | Input | Description | Required | Default |
 |-------|-------------|----------|---------|
-| `server-url` | Works server URL | Yes | `http://localhost:3001` |
+| `server-url` | Works server URL | No | `https://api.works.select` |
 | `api-key` | API key for authentication | No | |
 | `work-id` | Work ID (auto-detected if not provided) | No | |
 | `action` | Action: `sync`, `complete`, `progress`, `init` | Yes | `sync` |
