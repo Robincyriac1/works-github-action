@@ -1,0 +1,31 @@
+# Dependencies - DO NOT commit
+node_modules/
+
+# Source files (dist/ is the built output and MUST be committed for GitHub Actions)
+# src/ is kept for reference
+
+# Environment files - NEVER commit
+.env
+.env.*
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Test files
+*.test.ts
+*.spec.ts
+__tests__/
+coverage/

@@ -1,0 +1,44 @@
+name: 'Works Work Sync'
+description: 'Sync GitHub issues, PRs, and commits with Works work tracking'
+author: 'Works'
+
+branding:
+  icon: 'check-circle'
+  color: 'blue'
+
+inputs:
+  server-url:
+    description: 'Works server URL'
+    required: true
+    default: 'http://localhost:3001'
+  api-key:
+    description: 'Works API key'
+    required: false
+  work-id:
+    description: 'Work ID to update (if not auto-detected from commit/PR)'
+    required: false
+  action:
+    description: 'Action to perform: sync, complete, progress, init'
+    required: true
+    default: 'sync'
+  progress:
+    description: 'Progress percentage (for progress action)'
+    required: false
+  summary:
+    description: 'Completion summary (for complete action)'
+    required: false
+  files:
+    description: 'Comma-separated list of modified files'
+    required: false
+
+outputs:
+  work-id:
+    description: 'The work ID that was updated'
+  status:
+    description: 'The new status of the work'
+  agents-md:
+    description: 'Generated AGENTS.md content'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
