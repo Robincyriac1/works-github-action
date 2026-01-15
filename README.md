@@ -28,7 +28,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: Robincyriac1/works-github-action@v1
+      - uses: works-select/works-github-action@v1
         with:
           api-key: ${{ secrets.WORKS_API_KEY }}
           action: sync
@@ -48,7 +48,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - uses: Robincyriac1/works-github-action@v1
+      - uses: works-select/works-github-action@v1
         with:
           api-key: ${{ secrets.WORKS_API_KEY }}
           action: complete
@@ -69,7 +69,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Report Start
-        uses: Robincyriac1/works-github-action@v1
+        uses: works-select/works-github-action@v1
         with:
           action: progress
           work-id: ${{ github.event.head_commit.message }}
@@ -80,7 +80,7 @@ jobs:
         run: npm run build
 
       - name: Report Complete
-        uses: Robincyriac1/works-github-action@v1
+        uses: works-select/works-github-action@v1
         with:
           action: progress
           progress: 100
@@ -101,7 +101,7 @@ jobs:
     if: github.event.label.name == 'ai-agent'
     runs-on: ubuntu-latest
     steps:
-      - uses: Robincyriac1/works-github-action@v1
+      - uses: works-select/works-github-action@v1
         id: works
         with:
           action: init
